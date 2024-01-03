@@ -3,9 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
 export default function Login() {
   const [email, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [isloggedin, setloggedin] = useState(false);
   let [reply, setreply] = useState("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ export default function Login() {
         if (response.ok) {
           console.log("form is submitted");
           setreply("Login successful");
+          setloggedin(true);
         } else {
           console.log("Login failed");
           setreply("Login failed");
